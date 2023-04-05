@@ -12,19 +12,20 @@ from googleapiclient.discovery import build
 
 import time
 
+import datetime
+
+import csv
+
 # In[2]:
 
 
 while True:
 
-    import datetime
-
     current_datetime = datetime.datetime.now()
     print(current_datetime.time())
-
-    #We run this before 12am SGT each day
         
-    dataset_name = 'yt_dataset_{}.csv'.format(str(current_datetime.date()))
+    dataset_name = 'yt_dataset_{}_{}.csv'.format(str(current_datetime.date()), \
+    str(current_datetime.time().isoformat("seconds")).replace(":","-"))
     print(dataset_name)
 
 
@@ -133,7 +134,7 @@ while True:
 
     count = 1 #just so we don't overload the API call quota
 
-    while next_page and count < 10: #we will let it run for maximum 20 cycles
+    while next_page and count < 20: #we will let it run for maximum 20 cycles
         request = youtube.search().list(
             part="snippet",
             pageToken=next_page,
@@ -146,12 +147,12 @@ while True:
         ) #request for a service
 
         search_result = request.execute() #execute the request
-        
-        for video in search_result["items"]:
-            video_id.append(video["id"]["videoId"])
             
         if "nextPageToken" in search_result:
             next_page = search_result["nextPageToken"]
+        
+            for video in search_result["items"]:
+                video_id.append(video["id"]["videoId"])
         
         else:
             next_page = None
@@ -188,10 +189,9 @@ while True:
 
     # In[17]:
 
-
-    import csv
         
-    header = ['id', 'publishedAt', 'channelId', 'title', 'description', 'channelTitle', 'categoryId', 'duration', 'dimension',           'definition', 'caption', 'viewCount', 'likeCount', 'commentCount', 'Trending']
+    header = ['id', 'publishedAt', 'channelId', 'title', 'description', 'channelTitle', 'categoryId', 'liveBroadcastContent', 'duration', 'dimension', \
+    'definition', 'caption', 'viewCount', 'likeCount', 'commentCount', 'Trending']
 
     #There is no trending tag from the API
 
@@ -226,24 +226,39 @@ while True:
                 
             if "commentCount" not in statistics:
                 statistics["commentCount"] = "None"
+
+            if "liveBroadcastContent" in snippet:
+                if snippet["liveBroadcastContent"] == 'none':
+                    snippet["liveBroadcastContent"] = 0
+                else:
+                    snippet["liveBroadcastContent"] = 1
+            else:
+                snippet["liveBroadcastContent"] = "None"
                 
 
-            data = [current_videoId, snippet["publishedAt"], snippet["channelId"], snippet["title"], snippet["description"],                snippet["channelTitle"], snippet["categoryId"], contentDetails["duration"], contentDetails["dimension"],                contentDetails["definition"], contentDetails["caption"], statistics["viewCount"], statistics["likeCount"],                statistics["commentCount"]]
+            data = [current_videoId, snippet["publishedAt"], snippet["channelId"], snippet["title"], snippet["description"], \
+            snippet["channelTitle"], snippet["categoryId"], snippet["liveBroadcastContent"], contentDetails["duration"], \
+            contentDetails["dimension"], contentDetails["definition"], contentDetails["caption"], statistics["viewCount"], \
+            statistics["likeCount"], statistics["commentCount"]]
 
 
             #We need to manually check if a video is trending
 
             if current_videoId in trending_id:
+                print('Flag, there areeee trendingid videos.')
                 data.append(1)
                 trending_id.remove(current_videoId)
 
             else:
+                print('Flag, there are nooo trendingid videos.')
                 data.append(0)
 
             writer.writerow(data)
             
         #Add the rest of the trending videos to the csv
         for current_videoId in trending_id:
+
+            print('Flag, these are the rest of trendingid videos.')
             
             request = youtube.videos().list(
                 part="snippet,contentDetails,statistics",
@@ -267,7 +282,18 @@ while True:
             if "commentCount" not in statistics:
                 statistics["commentCount"] = "None"
 
-            data = [current_videoId, snippet["publishedAt"], snippet["channelId"], snippet["title"], snippet["description"],                snippet["channelTitle"], snippet["categoryId"], contentDetails["duration"], contentDetails["dimension"],                contentDetails["definition"], contentDetails["caption"], statistics["viewCount"], statistics["likeCount"],                statistics["commentCount"]]
+            if "liveBroadcastContent" in snippet:
+                if snippet["liveBroadcastContent"] == 'none':
+                    snippet["liveBroadcastContent"] = 0
+                else:
+                    snippet["liveBroadcastContent"] = 1
+            else:
+                snippet["liveBroadcastContent"] = "None"
+
+            data = [current_videoId, snippet["publishedAt"], snippet["channelId"], snippet["title"], snippet["description"], \
+            snippet["channelTitle"], snippet["categoryId"], snippet["liveBroadcastContent"], contentDetails["duration"], \
+            contentDetails["dimension"], contentDetails["definition"], contentDetails["caption"], statistics["viewCount"], \
+            statistics["likeCount"], statistics["commentCount"]]
             
             data.append(1)
 
@@ -278,7 +304,7 @@ while True:
 
     # In[ ]:
 
-    time.sleep(60 * 60 * 24)
+    time.sleep(60 * 60 * 12)
 
 
 
