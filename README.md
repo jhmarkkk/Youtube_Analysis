@@ -1,4 +1,4 @@
-# Welcome to our Youtube_Analysis repository
+# Welcome to our SC1015 Mini Project on Youtube_Analysis!
 
 ## About
 
