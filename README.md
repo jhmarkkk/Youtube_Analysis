@@ -3,7 +3,7 @@
 ## About
 
 
-## Contributers
+## Members (Team 6)
 - Mark Chin
 - Kuan Kiat
 - Chelson Chong
