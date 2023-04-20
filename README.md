@@ -3,7 +3,10 @@
 ## About
 
 
-##Contributers
+## Contributers
+- Mark Chin
+- Kuan Kiat
+- Chelson Chong
 
 ## Models Used
 1.
