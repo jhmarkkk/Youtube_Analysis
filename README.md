@@ -85,6 +85,7 @@ In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifie
 ### Additional: Cleaning of Data to increase accuracy
 <img width="744" alt="image" src="https://user-images.githubusercontent.com/79626294/233765549-568e37b0-ba70-499e-9986-1cf934afbfb1.png">
 
+## Conclusion
 
 ## References
 1. https://www.ibm.com/topics/naive-bayes#:~:text=The%20Na%C3%AFve%20Bayes%20classifier%20is,a%20given%20class%20or%20category
