@@ -66,6 +66,8 @@ Based on the datasets, we use machine learning models to predict:
 
 ### Gini Tree
 
+## Random Forest
+
 ## Youtube Category Prediction Process
 In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifier. By inputing in hypothetical video titles, the Prediction Model will produce for us the predicted category to place this vidoes in. There are 3 dataset that we have tested on, firstly a Pre-Dataset which is a smaller dataset which we used to work on while we collect more data from the YouTube API, secondly, the Full-Dataset and lastly the cleaned version of the Full-Dataset.
 ### Part 1: Getting the data
