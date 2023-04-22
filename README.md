@@ -54,6 +54,36 @@ Based on the datasets, we use machine learning models to predict:
 3. Naïve Bayes
     - The Naïve Bayes classifier is a supervised machine learning algorithm, which is used for classification tasks, like text classification. It is also part of a family of generative learning algorithms, meaning that it seeks to model the distribution of inputs of a given class or category.
 
+## Exploratory Data Analysis
+### Categories Sorted By Video Count / Trending Videos Sorted By Video Count
+<img width="567" alt="image" src="https://user-images.githubusercontent.com/79626294/233766870-d210cdf2-7c33-4813-a74b-33360f0de0ed.png">
+
+### Videos Posted Per Hour / Trending Videos Posted Per Hour
+<img width="578" alt="image" src="https://user-images.githubusercontent.com/79626294/233766897-1e6c99ea-45df-4ce9-8308-610054974982.png">
+
+### Videos Posted Throughout The Week / Trending Videos Posted Throughout The Week
+<img width="579" alt="image" src="https://user-images.githubusercontent.com/79626294/233766906-9e484522-5a30-407a-956e-7cb10f615516.png">
+
+### Gini Tree
+
+## Youtube Category Prediction Process
+In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifier. By inputing in hypothetical video titles, the Prediction Model will produce for us the predicted category to place this vidoes in. There are 3 dataset that we have tested on, firstly a Pre-Dataset which is a smaller dataset which we used to work on while we collect more data from the YouTube API, secondly, the Full-Dataset and lastly the cleaned version of the Full-Dataset.
+### Part 1: Getting the data
+<img width="765" alt="image" src="https://user-images.githubusercontent.com/79626294/233765603-42228515-1cc1-4f55-a4e3-919f7b43b8d6.png">
+
+
+### Part 2: Training the model
+<img width="764" alt="image" src="https://user-images.githubusercontent.com/79626294/233765584-9b818dde-7704-4020-9959-77c6bc73fa43.png">
+
+
+### Part 3: Testing phase
+<img width="327" alt="image" src="https://user-images.githubusercontent.com/79626294/233765576-1d2ab293-1a5d-4627-b135-8faf300570d0.png">
+
+
+### Additional: Cleaning of Data to increase accuracy
+<img width="744" alt="image" src="https://user-images.githubusercontent.com/79626294/233765549-568e37b0-ba70-499e-9986-1cf934afbfb1.png">
+
+
 ## References
 1. https://www.ibm.com/topics/naive-bayes#:~:text=The%20Na%C3%AFve%20Bayes%20classifier%20is,a%20given%20class%20or%20category
 2. https://towardsdatascience.com/understanding-random-forest-58381e0602d2
