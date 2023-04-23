@@ -104,12 +104,31 @@ We then compiled these csv files into one YT_dataset.csv file.
 
 ## Exploratory Data Analysis
 ### Categories Sorted By Video Count / Trending Videos Sorted By Video Count
+
+A countplot for the categories of ALL videos
+Most common categories are Entertainment, News & Politics and Sport.
+However, for TRENDING videos, the top categories are Gaming, Entertainment and Music.
+
+We believe that this could be because of their higher replay value.
+
 <img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766870-d210cdf2-7c33-4813-a74b-33360f0de0ed.png">
 
 ### Videos Posted Per Hour / Trending Videos Posted Per Hour
+
+Hours are in UTC, the timezone for the united states is UTC minus 5, thus,for ALL videos, the most popular time to post videos is at 11am.
+
+For TRENDING videos, most of them are instead posted at 9am.
+It is interesting to note that the hours of 5 to 11, 12am to 6am, have the lowest number of videos posted.
+It coincides with the average time Americans sleep and wake up, affirming the data’s validity.
+
 <img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766897-1e6c99ea-45df-4ce9-8308-610054974982.png">
 
 ### Videos Posted Throughout The Week / Trending Videos Posted Throughout The Week
+
+Saturday and Sunday are the most popular days for ALL videos. While Friday, Sunday then Saturday are the most popular days for TRENDING videos.
+
+We inferred that it is because more videos are watched at the end of the people's work weeks.
+
 <img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766906-9e484522-5a30-407a-956e-7cb10f615516.png">
 
 ## Pre-Processing for Classification
