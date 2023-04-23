@@ -104,17 +104,71 @@ We then compiled these csv files into one YT_dataset.csv file.
 
 ## Exploratory Data Analysis
 ### Categories Sorted By Video Count / Trending Videos Sorted By Video Count
-<img width="567" alt="image" src="https://user-images.githubusercontent.com/79626294/233766870-d210cdf2-7c33-4813-a74b-33360f0de0ed.png">
+<img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766870-d210cdf2-7c33-4813-a74b-33360f0de0ed.png">
 
 ### Videos Posted Per Hour / Trending Videos Posted Per Hour
-<img width="578" alt="image" src="https://user-images.githubusercontent.com/79626294/233766897-1e6c99ea-45df-4ce9-8308-610054974982.png">
+<img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766897-1e6c99ea-45df-4ce9-8308-610054974982.png">
 
 ### Videos Posted Throughout The Week / Trending Videos Posted Throughout The Week
-<img width="579" alt="image" src="https://user-images.githubusercontent.com/79626294/233766906-9e484522-5a30-407a-956e-7cb10f615516.png">
+<img width="90%" alt="image" src="https://user-images.githubusercontent.com/79626294/233766906-9e484522-5a30-407a-956e-7cb10f615516.png">
+
+## Pre-Processing for Classification
+Before our classifier can determine which variables are best in predicting Trending.
+We had to pre-process several variables in order for the classifier to be able to read them.
+
+#### View Count:
+We omitted out data which have ‘None’s as the value of the viewCount as those videos are paid movies in youtube.
+These are not desirable data as they are not traditional videos and do not get trended.
+
+<img width="90%" alt="image" src="https://user-images.githubusercontent.com/52443489/233831792-2370fa0b-37c1-493b-9f0f-c6bafbcee402.png">
+
+#### TItle & Description:
+Does trended videos usually have a longer title or description?
+We converted titles and descriptions to their length to answer that question.
+
+<img width="40%" alt="image" src="https://user-images.githubusercontent.com/52443489/233831896-52e7f1eb-0d5c-45d3-b374-59e462a1edde.png">
+<img width="40%" alt="image" src="https://user-images.githubusercontent.com/52443489/233831910-62cb3e1e-e39b-47e2-88b9-a1fa486fec7c.png">
+
+#### Comments & Likes:
+As some videos have disabled comments or likes, we modified data with ‘None’s to a readable value of 0 for the classifier.
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/52443489/233832352-71d223c9-d480-4e63-87c5-192768c89fdd.png">
+
+#### Duration:
+We converted it from a string with hours, minutes and seconds to a numeric value of seconds as the unit.
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/52443489/233830875-83ed555c-749c-4dc1-a1b6-4c70958f79f0.png">
+
+#### Before:
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/52443489/233831311-3ec7a4b3-2731-426f-92e1-a1d99d6ff4f8.png">
+
+#### After:
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/52443489/233831258-23ff0461-e786-43c0-ad2c-7ceff182be0a.png">
 
 ### Decision Tree
+<img width="100%" alt="image" src="https://user-images.githubusercontent.com/52443489/233832596-418a5a7d-a31a-41f7-8961-b608a2863692.png">
+
+### Features Importance (Decision Tree)
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/52443489/233832914-ab002267-d88e-42c6-acde-3c45d523e9d6.png">
 
 ## Random Forest
+The random forest classifier combines multiple decision trees to make a prediction
+Each tree in the Random Forest is constructed using a subset of the features and training samples.
+Each tree's prediction is treated as a vote, and the majority vote is taken as the final prediction
+It’s algorithm can rank the importance of each feature by it’s contribution to the classification accuracy of the model
+
+<img width="90%" alt="image" src="https://user-images.githubusercontent.com/52443489/233832642-1fe2a48e-f42b-4291-97c9-bd4ce7120542.png">
+
+### Features Importance (Random Forest)
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/52443489/233832905-7f0e9a62-f110-417c-b3a7-c7aa97a1210a.png">
+
+## Comparing Models
+
+For predicting the training dataset, Random Forest had a classification accuracy of 1 while the decision tree’s accuracy  is 0.85
+
+For predicting the testing dataset, Random Forest had a classification accuracy of 0.91 while the decision tree’s accuracy is 0.85
+
+<img width="100%" alt="image" src="https://user-images.githubusercontent.com/52443489/233832670-b37cead1-ec48-4dd1-a996-70c16562272f.png">
 
 ## Youtube Category Prediction Process
 In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifier. By inputing in hypothetical video titles, the Prediction Model will produce for us the predicted category to place this vidoes in. There are 3 dataset that we have tested on, firstly a Pre-Dataset which is a smaller dataset which we used to work on while we collect more data from the YouTube API, secondly, the Full-Dataset and lastly the cleaned version of the Full-Dataset.
