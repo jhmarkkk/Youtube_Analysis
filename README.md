@@ -217,7 +217,7 @@ Some of the process that was done to clean the data included removing unnecessar
 As seen in the chart above, there are 140k texts after cleaning the data in comparison to what it was which was at 167k texts.
 
 ## Conclusion
-Our project has answered both of our problem statements. However, perhaps we need larger datasets for greater accuracy.
+Our project has answered both of our problem statements, we have compared models determining the best predictor of Trending videos and trained a model to predict a video's category based on its title. However, perhaps we need larger datasets for greater accuracy.
 
 Especially for the video category predictor model, our datasets may still be too small to make accurate classifications due to the huge number of video categories.
 
