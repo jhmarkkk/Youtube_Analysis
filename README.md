@@ -3,7 +3,7 @@
 ## Introduction
 Our project uses the official [Youtube Data API](https://developers.google.com/youtube/v3) to form datasets on videos in the past 3 days.
 
-Based on the datasets, we use machine learning models to predict:
+Based on the datasets, our objective was to use machine learning models to predict:
 1. Whether a video will trend or not
 2. What Youtube video category (e.g. Gaming, Sports, Music) a video belongs to based on its title
 
@@ -14,6 +14,8 @@ We cover the following topics in the following sections:
 - [Dataset Information](#dataset-information)
 - [Machine Learning Models Used](#machine-learning-models-used)
 - [Explanatory Data Analysis (EDA)](#exploratory-data-analysis)
+- [Pre-Processing for Classification](#pre-processing-for-classification)
+- [Comparing Models](#comparing-models)
 - [Youtube Category Prediction Process](#youtube-category-prediction-process)
 - [Conclusion](#conclusion)
 - [References](#references)
@@ -97,10 +99,11 @@ We then compiled these csv files into one YT_dataset.csv file.
 
 ## Machine Learning Models Used
 1. Decision Tree
+    - The Decision Tree classifier is a Supervised Machine Learning Algorithm that uses a set of rules to make decisions, similarly to how humans make decisions. The intuition behind Decision Trees is that you use the dataset features to create yes/no questions and continually split the dataset until you isolate all data points belonging to each class. We decided to use this model to compare with our Random Forest model in predicting Trending. 
 2. Random Forest
-    - The Random Forest classifier consists of many individual decision trees that make use of different sets of data and different features to classify them. The model chooses the class most predicted by the trees as its prediction.
+    - The Random Forest classifier consists of many individual decision trees that make use of different sets of data and different features to classify them. The model chooses the class most predicted by the trees as its prediction. We decided to use this model to compare with our Decision Tree model in predicting Trending.
 3. Naïve Bayes
-    - The Naïve Bayes classifier is a supervised machine learning algorithm, which is used for classification tasks, like text classification. It is also part of a family of generative learning algorithms, meaning that it seeks to model the distribution of inputs of a given class or category.
+    - The Naïve Bayes classifier is a supervised machine learning algorithm, which is used for classification tasks, like text classification. It is also part of a family of generative learning algorithms, meaning that it seeks to model the distribution of inputs of a given class or category. We decided to use this model to predict video categories from a title.
 
 ## Exploratory Data Analysis
 ### Categories Sorted By Video Count / Trending Videos Sorted By Video Count
@@ -164,17 +167,19 @@ We converted it from a string with hours, minutes and seconds to a numeric value
 #### After:
 <img width="350" alt="image" src="https://user-images.githubusercontent.com/52443489/233831258-23ff0461-e786-43c0-ad2c-7ceff182be0a.png">
 
-### Decision Tree
+## Decision Tree
+The inputs for both the Decision Tree and Random forest involved values of likeCount, commentCount, viewCount, titleCount, descriptionCount, duration and caption. The output was a prediction of whether that video was trending or not.
 <img width="100%" alt="image" src="https://user-images.githubusercontent.com/52443489/233832596-418a5a7d-a31a-41f7-8961-b608a2863692.png">
 
 ### Features Importance (Decision Tree)
 <img width="250" alt="image" src="https://user-images.githubusercontent.com/52443489/233832914-ab002267-d88e-42c6-acde-3c45d523e9d6.png">
 
 ## Random Forest
-The random forest classifier combines multiple decision trees to make a prediction
+The inputs for both the Decision Tree and Random forest involved values of likeCount, commentCount, viewCount, titleCount, descriptionCount, duration and caption. The output was a prediction of whether that video was trending or not.
+The random forest classifier combines multiple decision trees to make a prediction.
 Each tree in the Random Forest is constructed using a subset of the features and training samples.
-Each tree's prediction is treated as a vote, and the majority vote is taken as the final prediction
-It’s algorithm can rank the importance of each feature by it’s contribution to the classification accuracy of the model
+Each tree's prediction is treated as a vote, and the majority vote is taken as the final prediction.
+It’s algorithm can rank the importance of each feature by it’s contribution to the classification accuracy of the model.
 
 <img width="90%" alt="image" src="https://user-images.githubusercontent.com/52443489/233832642-1fe2a48e-f42b-4291-97c9-bd4ce7120542.png">
 
@@ -182,6 +187,7 @@ It’s algorithm can rank the importance of each feature by it’s contribution 
 <img width="250" alt="image" src="https://user-images.githubusercontent.com/52443489/233832905-7f0e9a62-f110-417c-b3a7-c7aa97a1210a.png">
 
 ## Comparing Models
+The models were trained and tested in a ratio of 80:20 (80 being the training set and 20 being the test set).
 
 For predicting the training dataset, Random Forest had a classification accuracy of 1 while the decision tree’s accuracy  is 0.85
 
@@ -197,7 +203,7 @@ In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifie
 
 ### Part 2: Training the model
 <img width="764" alt="image" src="https://user-images.githubusercontent.com/79626294/233765584-9b818dde-7704-4020-9959-77c6bc73fa43.png">
-The Model was train and tested in a ratio of 80:20 (80 being the training set and 20 being the test set)
+The Model was trained and tested in a ratio of 80:20 (80 being the training set and 20 being the test set).
 
 ### Part 3: Testing phase
 <img width="327" alt="image" src="https://user-images.githubusercontent.com/79626294/233765576-1d2ab293-1a5d-4627-b135-8faf300570d0.png">
@@ -224,3 +230,5 @@ A second possible extension is to examine the data across more days. Maybe on da
 1. https://www.ibm.com/topics/naive-bayes#:~:text=The%20Na%C3%AFve%20Bayes%20classifier%20is,a%20given%20class%20or%20category
 2. https://towardsdatascience.com/understanding-random-forest-58381e0602d2
 3. https://developers.google.com/youtube/v3
+4. https://www.sleepcycle.com/sleep-science/what-we-know-about-americas-healthiest-happiest-best-rested/
+5. https://towardsdatascience.com/decision-tree-classifier-explained-in-real-life-picking-a-vacation-destination-6226b2b60575
