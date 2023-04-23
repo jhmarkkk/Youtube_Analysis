@@ -1,18 +1,30 @@
 # Welcome to our SC1015 Mini Project on Youtube_Analysis!
 
-## About
+## Introduction
 Our project uses the official [Youtube Data API](https://developers.google.com/youtube/v3) to form datasets on videos in the past 3 days.
 
 Based on the datasets, we use machine learning models to predict:
 1. Whether a video will trend or not
 2. What Youtube video category (e.g. Gaming, Sports, Music) a video belongs to based on its title
 
-## Members (Team 6)
+These problem statements can give us insight into maximising Trending potential of Youtube videos, as well as allow us to explore natural language processing potential using titles and categories of video hosting platforms.
+
+We cover the following topics in the following sections:
+- [Members](#members)
+- [Dataset Information](#dataset-information)
+- [Machine Learning Models Used](#machine-learning-models-used)
+- [Explanatory Data Analysis (EDA)](#exploratory-data-analysis)
+- [Youtube Category Prediction Process](#youtube-category-prediction-process)
+- [Conclusion](#conclusion)
+- [References](#references)
+
+## Members
 - Chin Jun Hao, Mark
 - Tan Kuan Kiat
 - Chelson Chong
 
 ## Dataset Information
+
 ![Capture](https://user-images.githubusercontent.com/93315900/233765193-0c01da46-aa47-48bc-ace3-7805e49c91f9.PNG)
 
 - id: A string for the Youtube id of the video.
@@ -64,7 +76,7 @@ Based on the datasets, we use machine learning models to predict:
 ### Videos Posted Throughout The Week / Trending Videos Posted Throughout The Week
 <img width="579" alt="image" src="https://user-images.githubusercontent.com/79626294/233766906-9e484522-5a30-407a-956e-7cb10f615516.png">
 
-### Gini Tree
+### Decision Tree
 
 ## Random Forest
 
@@ -76,16 +88,28 @@ In this Youtube Category Prediction Model, we made use of Naïve Bayes Classifie
 
 ### Part 2: Training the model
 <img width="764" alt="image" src="https://user-images.githubusercontent.com/79626294/233765584-9b818dde-7704-4020-9959-77c6bc73fa43.png">
-
+The Model was train and tested in a ratio of 80:20 (80 being the training set and 20 being the test set)
 
 ### Part 3: Testing phase
 <img width="327" alt="image" src="https://user-images.githubusercontent.com/79626294/233765576-1d2ab293-1a5d-4627-b135-8faf300570d0.png">
-
+Here we provide hypothetical video titles, in which the model will then provide us with the predicted category these video titles will be categorised in.
 
 ### Additional: Cleaning of Data to increase accuracy
+<img width="453" alt="image" src="https://user-images.githubusercontent.com/79626294/233828219-fe81d0ac-a61d-494b-860a-3934e8d7ea79.png">
+Some of the process that was done to clean the data included removing unnecessary spaces, cleaning the numbers, correction of the misspelled words, correction of rare words, cleaning bad case words, cleaning the repeat words, cleaning the emojis, unnecessary, punctuations, characters as seen in our preprocess function. These uncleaned data would affect the models efficency even if it is by the slightest margin.
+
 <img width="744" alt="image" src="https://user-images.githubusercontent.com/79626294/233765549-568e37b0-ba70-499e-9986-1cf934afbfb1.png">
+As seen in the chart above, there are 140k texts after cleaning the data in comparison to what it was which was at 167k texts.
 
 ## Conclusion
+Our project has answered both of our problem statements. However, perhaps we need larger datasets for greater accuracy.
+
+Especially for the video category predictor model, our datasets may still be too small to make accurate classifications due to the huge number of video categories.
+
+One possible extension is to examine data across other regions. We only observed Youtube data in the US region for this dataset. Maybe regions like Singapore and Europe will provide different results.
+
+A second possible extension is to examine the data across more days. Maybe on days like public holidays, the data may differ.
+
 
 ## References
 1. https://www.ibm.com/topics/naive-bayes#:~:text=The%20Na%C3%AFve%20Bayes%20classifier%20is,a%20given%20class%20or%20category
