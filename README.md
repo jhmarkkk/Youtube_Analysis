@@ -25,6 +25,38 @@ We cover the following topics in the following sections:
 
 ## Dataset Information
 
+The YT_Dataset_Creation.ipynb file generates a dataset.
+
+![image](https://user-images.githubusercontent.com/93315900/233829093-ed45503b-7200-40f7-94f8-ffc4aa2f97a2.png)
+
+First, we get Youtube to list the videos currently on trending. 
+
+We then obtain the video ID of these trending videos and store them in a trending_id variable.
+
+![image](https://user-images.githubusercontent.com/93315900/233829116-1b93e0ba-767a-4a13-8986-a2cf974c6310.png)
+
+Next, we do a general search for videos.
+
+We do not want to search for videos from too long ago, as trending videos are those that are released more recently. Hence, we set a start_date variable of datetime 72 hours before our program runs.
+
+Then, we do a search of videos published after this start_date variable. 
+
+![image](https://user-images.githubusercontent.com/93315900/233829132-42792188-dea5-473e-b6aa-d9f7d0cf491a.png)
+
+Our searches give us a list of videos. But the information given is quite lacking. We currently only get videoID, channelID, and publishTiming. We would want more factors that could possibly influence if a video trends.
+
+![image](https://user-images.githubusercontent.com/93315900/233829148-66b6220e-1e4d-48c8-a4af-a9ffdf3f2243.png)
+
+To accomplish this, we make an API request for each individual videoID. This gives us more information about each video.
+
+Now, we have access to information like categoryId, video duration, viewcounts, likecounts, and commentcounts.
+
+![image](https://user-images.githubusercontent.com/93315900/233829407-1d9e2a36-76c9-4137-823c-eee624af1a0c.png)
+
+We add all these videoIds to a video_id variable (unless they are in trending_id too as we do not want to double-count).
+
+Giving the videos in trending_id a trending value of 1 and videos in video_id a trending value of 0, we get a compiled dataset below.
+
 ![Capture](https://user-images.githubusercontent.com/93315900/233765193-0c01da46-aa47-48bc-ace3-7805e49c91f9.PNG)
 
 - id: A string for the Youtube id of the video.
@@ -58,6 +90,10 @@ We cover the following topics in the following sections:
 - commentCount: An integer representing number of comments the video has. (contains a string "None" if the video has comments disabled)
 
 - Trending: integer 0 if the video is NOT trending at search time, and 1 if it is.
+
+The YT_Dataset_Creation.py file does the same as the YT_Dataset_Creation.ipynb file, but generates a dataset once every 12 hours.
+
+We then compiled these csv files into one YT_dataset.csv file.
 
 ## Machine Learning Models Used
 1. Decision Tree
@@ -114,4 +150,4 @@ A second possible extension is to examine the data across more days. Maybe on da
 ## References
 1. https://www.ibm.com/topics/naive-bayes#:~:text=The%20Na%C3%AFve%20Bayes%20classifier%20is,a%20given%20class%20or%20category
 2. https://towardsdatascience.com/understanding-random-forest-58381e0602d2
-3. 
+3. https://developers.google.com/youtube/v3
